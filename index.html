@@ -136,11 +136,18 @@
                     background: #C4C4C4;
                     
                 }
+                
+                #essais{
+                    position: fixed;
+                    margin:0;
+                    top:0;
+                    left:0;
+                }
             -->
         </style>
     </head>
     <body onload="_init();">
-
+        <div id="essais"></div>
         <!-- Le titre -->
         <h1 id="titre">Super Memory</h1>
         <!-- Le bouton rejouer-->
@@ -286,6 +293,7 @@
                 clics = 2;
                 // le nombre d'essais pour trouver les bonnes combinaisons
                 essai = 0;
+                document.getElementById('essais').innerHTML = "Nombre d'essais : "+essai;
                 // un booléen pour autoriser le clic
                 clickOK = true;
             }
@@ -293,6 +301,7 @@
             function comparer() {
                 // j'incrémente le nombre d'essais
                 essai++;
+                document.getElementById('essais').innerHTML = "Nombre d'essais : "+essai;
                 // je crée des variables qui contiennent les id et fruits des deux tableaux retournés
                 var carte_une_id = carteRetournees[0][0];
                 var carte_une_fruit = carteRetournees[0][1];
@@ -325,9 +334,10 @@
                     // si nbpaires tombe à zéro, cela veut dire qu'on a fini le jeu
                     if (nbpaires === 0) {
                         // je change le titre pour dire en combien d'essais on a réussi, et le style au passage aussi
+                        document.getElementById('essais').innerHTML = "";
                         document.body.style.backgroundColor = '#333';
                         document.getElementById('titre').setAttribute('class','rouge');
-                        document.getElementById('titre').innerHTML = 'Vous avez gagné en '+essai+'essais !';
+                        document.getElementById('titre').innerHTML = 'Vous avez gagné en '+essai+' essais !';
                         // je réactive le bouton rejouer
                         document.getElementById('btn').style.display = 'initial';
                     }
