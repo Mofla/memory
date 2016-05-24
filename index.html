@@ -1,0 +1,371 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <style type="text/css">
+            <!--
+                body{
+                    margin:auto;
+                }
+                #container{
+                    margin:auto;
+                    width:700px;
+                    max-width:95%;
+                }
+                .bloc{
+                    display:inline-block;
+                    border:1px solid black;
+                    width:150px;
+                    height:150px;
+                    max-width:90%;
+                    position:relative;
+                }
+
+                .carte{
+                    width:100%;
+                    height:100%;
+                    position: absolute;
+                    box-shadow:2px 2px 4px black;
+                }
+                
+                .bloc, .carte{
+                    border-radius: 15px;
+                }
+                
+                .dos{
+                    z-index:2;
+                    background:url('imgs/dos.jpg');
+                    background-size: cover;
+                }
+                
+                .banane{
+                    z-index:1;
+                    background:url('imgs/banane.jpg');
+                    background-size: cover;
+                }
+                
+                .cerise{
+                    z-index:1;
+                    background:url('imgs/cerise.jpg');
+                    background-size: cover;
+                }
+                
+                .fraise{
+                    z-index:1;
+                    background:url('imgs/fraise.jpg');
+                    background-size: cover;
+                }
+                .framboise{
+                    z-index:1;
+                    background:url('imgs/framboise.jpg');
+                    background-size: cover;
+                }
+                .kiwi{
+                    z-index:1;
+                    background:url('imgs/kiwi.jpg');
+                    background-size: cover;
+                }
+                .orange{
+                    z-index:1;
+                    background:url('imgs/orange.jpg');
+                    background-size: cover;
+                }
+                .peche{
+                    z-index:1;
+                    background:url('imgs/peche.jpg');
+                    background-size: cover;
+                }
+                .pomme{
+                    z-index:1;
+                    background:url('imgs/pomme.jpg');
+                    background-size: cover;
+                }
+                .raisin{
+                    z-index:1;
+                    background:url('imgs/raisin.jpg');
+                    background-size: cover;
+                }
+                
+                #btn{
+                    width:140px;
+                    height:60px;
+                    text-transform: uppercase;
+                    font-style: italic;
+                    border-radius:10px;
+                    text-shadow: 0 0 4px black;
+                    color:#FFF;
+                    background:#DDD;
+                    margin:auto;
+                    font-size: 1.5em;
+                    text-align:center;
+                    animation: textanim 0.1s infinite;
+                    
+                }
+                
+                #titre{
+                    text-align: center;
+                    font-style: italic;
+                    text-shadow: 0 0 4px black;
+                }
+                
+                @keyframes textanim{
+                    0% {color:#FF976B;}
+                    100% {color:#F64D00;}
+                }
+                
+                .blanc{
+                    color:white;
+                }
+                .rouge{
+                    color:#F64D00;
+                }
+                
+                #clickon{
+                    position:fixed;
+                    color:white;
+                    text-shadow: 0 0 4px black;
+                    top:0;
+                    left:0;
+                }
+                
+                .on{
+                    background: #EDDD00;
+                }
+                
+                .off{
+                    background: #C4C4C4;
+                    
+                }
+            -->
+        </style>
+    </head>
+    <body onload="_init();">
+
+        <!-- Le titre -->
+        <h1 id="titre">Super Memory</h1>
+        <!-- Le bouton rejouer-->
+        <center><button id="btn" onclick="_init()">REJOUER</button></center>
+        <!-- Container : contient toutes les cartes tout simplement -->
+        <div id="container">
+            <!-- Div bloc : est la carte en fait, elle contient deux div : une qui fait la carte face cachée, l'autre face découverte -->
+            <div class="bloc">
+                <div class="carte dos"></div>
+                <div class="carte"></div>
+            </div>
+            <div class="bloc">
+                <div class="carte dos"></div>
+                <div class="carte"></div>
+            </div>
+            <div class="bloc">
+                <div class="carte dos"></div>
+                <div class="carte"></div>
+            </div>
+            <div class="bloc">
+                <div class="carte dos"></div>
+                <div class="carte"></div>
+            </div>
+            <div class="bloc">
+                <div class="carte dos"></div>
+                <div class="carte"></div>
+            </div>
+            <div class="bloc">
+                <div class="carte dos"></div>
+                <div class="carte"></div>
+            </div>
+            <div class="bloc">
+                <div class="carte dos"></div>
+                <div class="carte"></div>
+            </div>
+            <div class="bloc">
+                <div class="carte dos"></div>
+                <div class="carte"></div>
+            </div>
+            <div class="bloc">
+                <div class="carte dos"></div>
+                <div class="carte"></div>
+            </div>
+            <div class="bloc">
+                <div class="carte dos"></div>
+                <div class="carte"></div>
+            </div>
+            <div class="bloc">
+                <div class="carte dos"></div>
+                <div class="carte"></div>
+            </div>
+            <div class="bloc">
+                <div class="carte dos"></div>
+                <div class="carte"></div>
+            </div>
+            <div class="bloc">
+                <div class="carte dos"></div>
+                <div class="carte"></div>
+            </div>
+            <div class="bloc">
+                <div class="carte dos"></div>
+                <div class="carte"></div>
+            </div>
+            <div class="bloc">
+                <div class="carte dos"></div>
+                <div class="carte"></div>
+            </div>
+            <div class="bloc">
+                <div class="carte dos"></div>
+                <div class="carte"></div>
+            </div>
+            <div class="bloc">
+                <div class="carte dos"></div>
+                <div class="carte"></div>
+            </div>
+            <div class="bloc">
+                <div class="carte dos"></div>
+                <div class="carte"></div>
+            </div>
+        </div>
+        
+        
+        <script type="text/javascript">         
+            //générer le tableau
+            // je génére un tableau propre
+            function genererTableau() {
+                // un premier tableau qui contient tous les fruits
+                var fruits = ['banane','cerise','fraise','framboise','kiwi','orange','peche','pomme','raisin'];
+                // je génére un tableau vide qui sera le tableau retourné avec 2 entrées d'un fruit
+                var tableau = [];
+                // je fais une boucle pour que j'ajoute un fruit 2 fois dans le tableau vide
+                for(i=0;i<fruits.length;i++){
+                    tableau.push(fruits[i],fruits[i]);
+                }
+                // je retourne le tableau
+                return tableau;
+            }
+            // une init, qui se lance au chargement du document dans le body ou quand on clique sur rejouer
+            function _init() {
+                // je remets en état initial le body (couleur, titre, etc)
+                document.body.style.backgroundColor = '#FFF';
+                document.getElementById('titre').innerHTML = 'Super Memory';
+                document.getElementById('titre').setAttribute('class','blanc');
+                document.getElementById('btn').style.display = 'none';
+                // je récup toutes les div avec la classe bloc
+                var imgs = document.getElementsByClassName("bloc");
+                // j'appelle la fonction genererTableau pour avoir un tableau utilisable
+                var tableau = genererTableau();
+                // je fais une boucle
+                for(i=0;i<imgs.length;i++){
+                    // j'ajoute 1 à i pour plus tard
+                    var nb = i+1;
+                    // je récupère toutes les 1e div des div bloc
+                    var dos = imgs[i].getElementsByTagName('div')[0];
+                    // je crée ma variable aléatoire
+                    var alea = Math.floor(Math.random()*tableau.length);
+                    // je réinitialise la face cachée de la carte pour ne pas que la carte soit directement affichée quand on rejoue
+                    dos.style.display = 'initial';
+                    // j'ajoute un id à la div bloc
+                    imgs[i].setAttribute('id','_'+nb);
+                    // même chose mais pour une classe
+                    imgs[i].classList.add(tableau[alea]);
+                    // même chose
+                    imgs[i].classList.add('flip');
+                    // je rajoute l'onclick 
+                    imgs[i].setAttribute('onclick','clicCarte("_'+nb+'","c_'+tableau[alea]+'");this.classList.toggle("active")');
+                    // je récupère la valeur de la 2e div de la ie div bloc
+                    var childnote = imgs[i].getElementsByTagName('div')[1];
+                    // je lui ajoute le fruit en classe
+                    childnote.classList.add(tableau[alea]);
+                    // j'enlève le fruit utilisé du tableau
+                    tableau.splice(alea,1);
+                }
+                // variables globales :
+                // je crée un tableau pour comparer
+                carteRetournees = []; // sera un array d'arrays clé 0 => [id,fruit], clé 1 => [id,fruit]
+                // je crée une variable qui renvoie le nombre de paires du jeu, quand ça arrivera à 0 le jeu se finira
+                nbpaires = 9;
+                // le nombre de clics autorisés
+                clics = 2;
+                // le nombre d'essais pour trouver les bonnes combinaisons
+                essai = 0;
+                // un booléen pour autoriser le clic
+                clickOK = true;
+            }
+            // une fonction pour comparer les deux cartes retournées
+            function comparer() {
+                // j'incrémente le nombre d'essais
+                essai++;
+                // je crée des variables qui contiennent les id et fruits des deux tableaux retournés
+                var carte_une_id = carteRetournees[0][0];
+                var carte_une_fruit = carteRetournees[0][1];
+                var carte_deux_id = carteRetournees[1][0];
+                var carte_deux_fruit = carteRetournees[1][1];
+                // je compare les fruits des deux cartes, si les fruits sont différents je fais la 1e condition, sinon l'autre
+                if(carte_une_fruit !== carte_deux_fruit) {
+                    // je récupère les 1e div des cartes comparées pour les remettre à 0
+                    var doc1 = document.getElementById(carte_une_id);
+                    var doc2 = document.getElementById(carte_deux_id);
+                    var docc1 = doc1.getElementsByTagName('div')[0];
+                    var docc2 = doc2.getElementsByTagName('div')[0];
+                    // je remets à 0 pour l'affichage
+                    docc1.style.display = 'initial';
+                    docc2.style.display = 'initial';
+                    // je réactive le onclick
+                    doc1.setAttribute('onclick','clicCarte("'+carte_une_id+'","'+carte_une_fruit+'")');
+                    doc2.setAttribute('onclick','clicCarte("'+carte_deux_id+'","'+carte_deux_fruit+'")');
+                    // j'ajoute la classe flip
+                    doc1.classList.add('flip');
+                    doc2.classList.add('flip');
+                    // je vide le tableau de comparaison
+                    carteRetournees = [];
+                    // je réinitialise les clics
+                    clics = 2;
+                }
+                else{ // là, les deux fruits sont les mêmes 
+                    // j'enlève 1 à nbpaires
+                    nbpaires--;
+                    // si nbpaires tombe à zéro, cela veut dire qu'on a fini le jeu
+                    if (nbpaires === 0) {
+                        // je change le titre pour dire en combien d'essais on a réussi, et le style au passage aussi
+                        document.body.style.backgroundColor = '#333';
+                        document.getElementById('titre').setAttribute('class','rouge');
+                        document.getElementById('titre').innerHTML = 'Vous avez gagné en '+essai+'essais !';
+                        // je réactive le bouton rejouer
+                        document.getElementById('btn').style.display = 'initial';
+                    }
+                    // si nbpaires n'est pas égale à 0 alors on continue le jeu donc :
+                    // je vide le tableau de comparaison
+                    carteRetournees = [];
+                    // je réinitialise les clics
+                    clics = 2;
+                }
+            }
+            // une fonction clic
+            function clicCarte(id,fruit) {
+                // je vérifie qu'on peut cliquer
+                if (clics > 0 && clickOK) {
+                    // j'interdis le clic
+                    clickOK = false;
+                    // je rentre les id et fruits de la carte cliquée dans le tableau de comparaison
+                    carteRetournees.push([id,fruit]);
+                    // je récupère les valeurs de la 1e div de la div bloc cliquée pour la faire disparaitre
+                    var doc = document.getElementById(id);
+                    var docc = doc.getElementsByTagName('div')[0];
+                    docc.style.display = 'none';
+                    // j'enlève le onclick également
+                    doc.removeAttribute('onclick');
+                    // j'enlève la classe flip pour le visuel
+                    doc.classList.remove('flip');
+                    // j'enlève 1 à clics
+                    clics--;
+                }
+                // si on a 2 valeurs dans le tableau de comparaison bah on les comparent
+                if (carteRetournees.length === 2) {
+                    // j'utilise un setTiemout d'1 seconde pour éviter que les cartes disparaissent instant
+                    setTimeout(function(){
+                        // j'appelle la fonction comparer
+                        comparer();
+                    },1000);
+                }
+                // j'autorise à nouveau le clic
+                clickOK = true;
+            }
+            
+        </script>
+    </body>
+</html>
