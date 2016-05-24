@@ -262,14 +262,17 @@
                     // j'ajoute un id à la div bloc
                     imgs[i].setAttribute('id','_'+nb);
                     // même chose mais pour une classe
+                    imgs[i].setAttribute('class','bloc');
                     imgs[i].classList.add(tableau[alea]);
                     // même chose
                     imgs[i].classList.add('flip');
                     // je rajoute l'onclick 
-                    imgs[i].setAttribute('onclick','clicCarte("_'+nb+'","c_'+tableau[alea]+'");this.classList.toggle("active")');
+                    imgs[i].setAttribute('onclick','clicCarte("_'+nb+'","c_'+tableau[alea]+'");');
                     // je récupère la valeur de la 2e div de la ie div bloc
                     var childnote = imgs[i].getElementsByTagName('div')[1];
                     // je lui ajoute le fruit en classe
+                    childnote.removeAttribute('class');
+                    childnote.setAttribute('class','carte');
                     childnote.classList.add(tableau[alea]);
                     // j'enlève le fruit utilisé du tableau
                     tableau.splice(alea,1);
